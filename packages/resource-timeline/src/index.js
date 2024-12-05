@@ -56,11 +56,11 @@ export default {
 				day: 'numeric'
 			},
 			duration: {months: 4},
-			slotDuration: {days: 1},
+			// slotDuration: {days: 1},
+			slotDuration: '12:00',
 			theme: themeView('ec-timeline ec-resource-month-view'),
 			titleFormat: {year: 'numeric', month: 'long'}
 		};
-
 		options.views.resourceTimelineYear = {
 			buttonText: btnTextYear,
 			component: View,
