@@ -64,8 +64,19 @@ export function addDay(date, x = 1) {
     date.setUTCDate(date.getUTCDate() + x);
 
     return date;
-}
+} 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+export function addMonth(date, x = 1) {
+    date.setUTCMonth(date.getUTCMonth() + x);
 
+    // Handle wrapping around to the next year
+    if (date.getUTCMonth() === 0) {
+        date.setUTCFullYear(date.getUTCFullYear() + 1);
+    }
+
+    return date;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 export function subtractDay(date, x = 1) {
     return addDay(date, -x);
 }

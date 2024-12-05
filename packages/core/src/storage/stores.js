@@ -9,6 +9,7 @@ import {
     createView,
     addDuration,
     addDay,
+    addMonth,
     subtractDay,
     toISOString,
     nextClosestDay,
@@ -89,7 +90,47 @@ export function viewDates(state) {
         return dates;
     });
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export function ucFirst (string) {
+    const trimmed = string.trim();
+    return trimmed ? trimmed.charAt(0).toUpperCase() + trimmed.slice(1) : "";
+}
 
+export function viewMonths(state) {
+    return derived([state._activeRange, state.hiddenDays], ([$_activeRange, $hiddenDays]) => {
+        let groupedDates = {};
+        let date = (cloneDate($_activeRange.start));
+        let end = (cloneDate($_activeRange.end));
+        addDay(date);
+        let counter = 0;
+        while (date < end) {
+            if (!$hiddenDays.includes(date.getUTCDay())) {
+                const monthKey = ucFirst(date.toLocaleString('default', { month: 'long', year: 'numeric' }));
+
+                // Initialize the array for the month if it doesn't exist
+                if (!groupedDates[(monthKey)] ) {
+                    counter = 0
+                    groupedDates[(monthKey)] = [];
+                }
+
+                // Push the current date into the month's array
+                if( counter == 0){
+                    groupedDates[(monthKey)].push(cloneDate(subtractDay(date)));
+                } else {
+                    let tempDate =  cloneDate(date);
+                    let nextDateMonthKey = ucFirst(addDay(tempDate).toLocaleString('default', { month: 'long', year: 'numeric' }));
+                    
+                    if ( nextDateMonthKey == monthKey ) 
+                        groupedDates[(monthKey)].push(cloneDate(date));
+                }
+            }
+            addDay(date);
+            counter++;
+        }
+        return groupedDates;
+    });
+} 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export function viewTitle(state) {
     return derived(
         [state.date, state._activeRange, state._intlTitle, state._dayGrid],

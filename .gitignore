@@ -4,3 +4,5 @@ node_modules
 /packages/*/*.css
 /packages/*/*.map
 /public
+.history
+/src

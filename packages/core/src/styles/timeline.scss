@@ -144,3 +144,67 @@
     }
   }
 }
+
+.ec-resource {
+  max-height: 33px !important;
+}
+
+.ec-days {
+  flex-basis: 33px !important;
+}
+
+article {
+  margin-top: 0px !important;
+}
+
+// Commenté à dessein pour garder les styles facultatifs
+// .ec-months {
+//     display: flex;
+//     justify-content: center;
+//     padding-bottom: 10px;
+// }
+
+.span-month {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.ec-month {
+  border-right: 1px solid var(--ec-border-color);
+  border-bottom: 1px solid var(--ec-border-color);
+
+  &-name {
+      font-size: 1.2em;
+      font-weight: bold;
+  }
+}
+
+.ec-header {
+  display: flex;
+  flex-direction: column;
+  height: 44px;
+}
+
+.ec-months {
+  display: flex;
+  justify-content: stretch;
+  padding-bottom: 10px;
+
+  .ec-month {
+      flex: 1;
+      text-align: center;
+  }
+}
+
+.ec-days {
+  display: flex;
+
+  .ec-day {
+      flex: 1;
+      text-align: center;
+
+      .ec-date {
+          margin-top: 5px;
+      }
+  }
+}

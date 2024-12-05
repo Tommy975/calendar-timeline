@@ -1,15 +1,15 @@
 <script>
     import {getContext} from 'svelte';
-    import {setContent, toISOString, toSeconds} from '@event-calendar/core';
-
-    let {_headerEl, _intlDayHeader, _intlDayHeaderAL, _dayTimes, _viewDates, slotDuration, theme} = getContext('state');
+    import {setContent, toISOString, toSeconds, addDay} from '@event-calendar/core';
+    let {_headerEl, _intlDayHeader, _intlDayHeaderAL, _dayTimes, _viewDates, _viewMonths, slotDuration, theme} = getContext('state');
 </script>
 
-<div class="{$theme.header}" bind:this={$_headerEl}>
-    <div class="{$theme.days}" role="row">
-        {#each $_viewDates as date}
-            <div class="{$theme.day} {$theme.weekdays?.[date.getUTCDay()]}">
-                {#if toSeconds($slotDuration)}
+{#if toSeconds($slotDuration)}
+
+    <div class="{$theme.header}" bind:this={$_headerEl}>
+        <div class="{$theme.days}" role="row">
+            {#each $_viewDates as date}
+                <div class="{$theme.day} {$theme.weekdays?.[date.getUTCDay()]}">
                     <div class="{$theme.dayHead}">
                         <time
                             datetime="{toISOString(date, 10)}"
@@ -27,17 +27,35 @@
                             </div>
                         {/each}
                     </div>
-                {:else}
-                        <div class="{$theme.time}" role="columnheader">
-                            <time
-                                datetime="{toISOString(date, 10)}"
-                                aria-label="{$_intlDayHeaderAL.format(date)}"
-                                use:setContent={$_intlDayHeader.format(date)}
-                            ></time>
-                        </div>
-                {/if}
+                </div>
+                {/each}
             </div>
-        {/each}
+        <div class="{$theme.hiddenScroll}"></div>
     </div>
-    <div class="{$theme.hiddenScroll}"></div>
-</div>
+{:else}
+    <div class="{$theme.header}" bind:this={$_headerEl}>
+        <div class="ec-months"  role="row">
+            {#each Object.entries($_viewMonths) as [key, month]}
+                <div class="ec-month ">
+                    <span class="span-month">{key}</span>
+                    <div class="{$theme.days}" role="row">
+
+                        {#each month as date}
+
+                            <div class="{$theme.day} {$theme.weekdays?.[date.getUTCDay()]}">
+                                <div class="{$theme.time}" role="columnheader">
+                                    <time
+                                        datetime="{toISOString(date, 10)}"
+                                        aria-label="{$_intlDayHeaderAL.format(date)}"
+                                        use:setContent={$_intlDayHeader.format(date)}
+                                    ></time>
+                                </div>
+                            </div>
+                        {/each}
+                    </div>
+                </div>
+            {/each}
+        </div>
+    </div>
+{/if}
+ 

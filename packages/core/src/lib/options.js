@@ -6,15 +6,18 @@ export function btnTextDay(text) {
 export function btnTextWeek(text) {
     return btnText(text, 'week');
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 export function btnTextMonth(text) {
     return btnText(text, 'month');
+}
+export function btnTextTrimester(text) {
+    return btnText(text, 'trimester');
 }
 
 export function btnTextYear(text) {
     return btnText(text, 'year');
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 function btnText(text, period) {
     return {
         ...text,

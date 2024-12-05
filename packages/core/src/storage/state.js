@@ -9,6 +9,7 @@ import {
     now,
     today,
     viewDates,
+    viewMonths,
     viewTitle,
     view as view2  // hack to avoid a runtime error in SvelteKit dev mode (ReferenceError: view is not defined)
 } from './stores';
@@ -52,6 +53,7 @@ export default class {
         this._scrollable = writable(false);
         this._viewTitle = viewTitle(this);
         this._viewDates = viewDates(this);
+        this._viewMonths = viewMonths(this); 
         this._view = view2(this);
         this._viewComponent = writable(undefined);
         // Interaction
