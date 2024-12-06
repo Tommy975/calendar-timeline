@@ -64,7 +64,7 @@
 
   .ec-times {
     display: flex;
-    border-top: 1px solid var(--ec-border-color);;
+    // border-top: 1px solid var(--ec-border-color);;
   }
 
   .ec-time {
@@ -182,7 +182,8 @@ article {
 .ec-header {
   display: flex;
   flex-direction: column;
-  height: 44px;
+  // height: 44px;
+  height: auto;
 }
 
 .ec-months {
@@ -206,5 +207,9 @@ article {
       .ec-date {
           margin-top: 5px;
       }
+
+      .ec-day-head {
+        border-top: 1px solid var(--ec-border-color) !important;
+    }
   }
 }
