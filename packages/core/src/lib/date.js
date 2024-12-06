@@ -76,6 +76,12 @@ export function addMonth(date, x = 1) {
 
     return date;
 }
+
+// export function setNoon(date) {
+//     date.setUTCHours(12, 0, 0, 0);
+
+//     return date;
+// }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 export function subtractDay(date, x = 1) {
     return addDay(date, -x);
@@ -86,6 +92,7 @@ export function setMidnight(date) {
 
     return date;
 }
+
 
 export function toLocalDate(date) {
     return new Date(

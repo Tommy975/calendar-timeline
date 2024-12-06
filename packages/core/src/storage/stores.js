@@ -15,6 +15,7 @@ import {
     nextClosestDay,
     prevClosestDay,
     setMidnight,
+    // setNoon,
     toLocalDate,
     debounce
 } from '../lib.js';
@@ -97,15 +98,15 @@ export function ucFirst (string) {
 }
 
 export function viewMonths(state) {
-    return derived([state._activeRange, state.hiddenDays], ([$_activeRange, $hiddenDays]) => {
+    return derived([state._activeRange, state.hiddenDays, state.locale], ([$_activeRange, $hiddenDays, $local]) => {
         let groupedDates = {};
-        let date = (cloneDate($_activeRange.start));
-        let end = (cloneDate($_activeRange.end));
+        let date = setMidnight(cloneDate($_activeRange.start));
+        let end = setMidnight(cloneDate($_activeRange.end));
         addDay(date);
         let counter = 0;
         while (date < end) {
             if (!$hiddenDays.includes(date.getUTCDay())) {
-                const monthKey = ucFirst(date.toLocaleString('default', { month: 'long', year: 'numeric' }));
+                const monthKey = ucFirst(date.toLocaleString($local, { month: 'long', year: 'numeric' }));
 
                 // Initialize the array for the month if it doesn't exist
                 if (!groupedDates[(monthKey)] ) {
@@ -118,7 +119,7 @@ export function viewMonths(state) {
                     groupedDates[(monthKey)].push(cloneDate(subtractDay(date)));
                 } else {
                     let tempDate =  cloneDate(date);
-                    let nextDateMonthKey = ucFirst(addDay(tempDate).toLocaleString('default', { month: 'long', year: 'numeric' }));
+                    let nextDateMonthKey = ucFirst(addDay(tempDate).toLocaleString($local, { month: 'long', year: 'numeric' }));
                     
                     if ( nextDateMonthKey == monthKey ) 
                         groupedDates[(monthKey)].push(cloneDate(date));
