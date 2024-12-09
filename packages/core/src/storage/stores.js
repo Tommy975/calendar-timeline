@@ -131,6 +131,32 @@ export function viewMonths(state) {
         return groupedDates;
     });
 } 
+
+// export function viewMonths(state) {
+//     return derived([state._activeRange, state.hiddenDays, state.locale], ([$_activeRange, $hiddenDays, $local]) => {
+//         let groupedDates = {};
+//         let date = setMidnight(cloneDate($_activeRange.start));
+//         let end = setMidnight(cloneDate($_activeRange.end));
+
+//         while (date < end) {
+//             if (!$hiddenDays.includes(date.getUTCDay())) {
+//                 const monthKey = ucFirst(date.toLocaleString($local, { month: 'long', year: 'numeric' }));
+
+//                 // Initialize the array for the month if it doesn't exist
+//                 if (!groupedDates[(monthKey)] ) {
+//                     groupedDates[(monthKey)] = [];
+//                 }
+
+//                 // Push the current date into the month's array
+//                 groupedDates[(monthKey)].push(cloneDate(date));
+
+//             }
+//             addDay(date);
+//             // counter++;
+//         }
+//         return groupedDates;
+//     });
+// } 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export function viewTitle(state) {
     return derived(
