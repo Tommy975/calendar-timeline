@@ -35,9 +35,11 @@
 
   .ec-header {
     overflow: hidden;
+    height: auto;
 
     .ec-days {
       min-width: max-content;
+      background-color: #F7F7FA;
     }
 
     .ec-day {
@@ -59,7 +61,8 @@
   }
 
   .ec-day-head {
-    border-style: none none none solid;
+    // border-style: none none none solid;
+    border-top: 1px solid var(--ec-border-color) !important;
   }
 
   .ec-times {
@@ -170,8 +173,8 @@ article {
 }
 
 .ec-month {
-  border-right: 1px solid var(--ec-border-color);
-  border-bottom: 1px solid var(--ec-border-color);
+  // border-right: 1px solid var(--ec-border-color);
+  // border-bottom: 1px solid var(--ec-border-color);
 
   &-name {
       font-size: 1.2em;
@@ -189,7 +192,7 @@ article {
 .ec-months {
   display: flex;
   justify-content: stretch;
-  padding-bottom: 10px;
+  // padding-bottom: 10px;
 
   .ec-month {
       flex: 1;
@@ -210,6 +213,11 @@ article {
 
       .ec-day-head {
         border-top: 1px solid var(--ec-border-color) !important;
-    }
+        border-bottom: 1px solid var(--ec-border-color) !important;
+        border-right: 0px;
+      }
+
+
+
   }
 }

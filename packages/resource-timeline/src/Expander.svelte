@@ -34,7 +34,7 @@
 <span class="{$theme.expander}">
     {#if payload.children.length}
         <button class="{$theme.button}" on:click={handleClick}>
-            {#if payload.expanded}&minus;{:else}&plus;{/if}
+            {#if payload.expanded}&#11206;{:else}&#11208;{/if}
         </button>
     {/if}
 </span>

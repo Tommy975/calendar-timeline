@@ -105,7 +105,12 @@
     padding: 0;
     aspect-ratio: 1;
     height: 1.25em;
+    border: none;
   }
+}
+
+span.ec-expander {
+  padding-top: 5px !important;
 }
 
 .ec-button-group {
@@ -215,6 +220,7 @@
   padding: 0 4px 0 8px;
   display: flex;
   flex-direction: column;
+  background-color: #F7F7FA;
 }
 
 .ec-content {
@@ -402,6 +408,7 @@
 .ec-draggable {
   cursor: pointer;
   user-select: none;
+  height: 100%;
 }
 
 .ec-ghost {
