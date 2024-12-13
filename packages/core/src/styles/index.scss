@@ -311,16 +311,27 @@ span.ec-expander {
 }
 
 .ec-event {
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 3.5px);
+    height: 100%;
+    background-color: rgba(255, 255, 255, .45);
+  }
+
   display: flex;
   padding: 2px;
   color: var(--ec-event-text-color);
   box-sizing: border-box;
   box-shadow: 0 0 1px 0 var(--ec-border-color);
   background-color: var(--ec-event-bg-color);
-  border-radius: 3px;
+  // border-radius: 3px;
   font-size: .85em;
   line-height: 1.5;
   z-index: 1;  // put it above the pointer event (for multi-day events in month view)
+  padding: 2px 2px 2px 7px;
 
   .ec-day-grid &,
   .ec-all-day & {
